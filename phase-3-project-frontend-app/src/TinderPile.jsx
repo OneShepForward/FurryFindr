@@ -1,8 +1,9 @@
 import React from "react";
 import TinderCard from 'react-tinder-card'
+import CardContent from "./CardContent";
 
 
-function TinderPile() {
+function TinderPile(pets) {
     const onSwipe = (direction) => {
         console.log('You swiped: ' + direction)
     }
@@ -18,7 +19,9 @@ function TinderPile() {
             preventSwipe={['right', 'left']}
             className="card"
         >
-            <p>Hello, world!</p>
+            <CardContent 
+                            
+            />
         </TinderCard>
     )
 }
