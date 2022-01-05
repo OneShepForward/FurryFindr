@@ -1,24 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import TinderPile from './TinderPile';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This is Eve and Nick's Frontend App
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Match with some fabulous pets!</h1>
+      <TinderPile />
     </div>
   );
 }
