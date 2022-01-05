@@ -12,8 +12,15 @@ function TinderPile() {
     }
 
     return (
-        <TinderCard onSwipe={onSwipe} onCardLeftScreen={() => onCardLeftScreen('fooBar')} preventSwipe={['right', 'left']}>Hello, World!</TinderCard>
-      )
+        <TinderCard 
+            onSwipe={onSwipe} 
+            onCardLeftScreen={() => onCardLeftScreen('fooBar')} 
+            preventSwipe={['right', 'left']}
+            className="card"
+        >
+            <p>Hello, world!</p>
+        </TinderCard>
+    )
 }
 
 export default TinderPile

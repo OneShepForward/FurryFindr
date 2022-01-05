@@ -5,7 +5,7 @@ import TinderPile from './TinderPile';
 function App() {
   return (
     <div className="App">
-      <p>Hello world!</p>
+      <h1>Match with some fabulous pets!</h1>
       <TinderPile />
     </div>
   );
