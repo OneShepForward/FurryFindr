@@ -16,6 +16,18 @@ function TinderPile({pets}) {
 
     function createMatch(name) {
         console.log(`${name} added to matches!`)
+        fetch('http://localhost:9292/matches', {
+            method: `POST`,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: 1,
+                pet_id: 2
+            })
+        })
+        .then((r) => r.json())
+        .then (console.log("Success!"))
     }
 
     function noMatch() {
