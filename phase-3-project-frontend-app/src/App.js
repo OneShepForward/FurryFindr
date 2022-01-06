@@ -5,6 +5,7 @@ import TinderPile from './TinderPile';
 
 function App() {
   const [pets, setPets] = useState();
+  const [user, setUser] = useState(1);
 
   useEffect(()=> {
     fetch('http://localhost:9292/pets')
@@ -20,6 +21,7 @@ function App() {
       <h1>Match with some fabulous pets!</h1>
       <TinderPile 
         pets = {pets}
+        user = {user}
       />
     </div>
   );
