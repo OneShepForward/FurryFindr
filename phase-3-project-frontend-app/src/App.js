@@ -6,11 +6,14 @@ import TinderPile from './TinderPile';
 function App() {
   const [pets, setPets] = useState();
 
-  function getPets() {
+  useEffect(()=> {
     fetch('http://localhost:9292/pets')
-    .then(res => res.json)
+    .then((res) => res.json())
+    // .then((data) => console.log(data))
     .then(data => setPets(data))
-  }
+  }, [])
+
+  // console.log(pets)
 
   return (
     <div className="App">

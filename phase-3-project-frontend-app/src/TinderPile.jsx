@@ -1,28 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import TinderCard from 'react-tinder-card'
-import CardContent from "./CardContent";
 
+function TinderPile({pets}) {
+    // const [lastDirection, setLastDirection] = useState();
 
-function TinderPile(pets) {
-    const onSwipe = (direction) => {
-        console.log('You swiped: ' + direction)
+    const swiped = (direction, name) => {
+        console.log(direction)
+        if (direction === "right") {
+            createMatch(name)
+        } else {
+            noMatch()
+        }
+        // setLastDirection(direction)
     }
-      
-    const onCardLeftScreen = (myIdentifier) => {
-        console.log(myIdentifier + ' left the screen')
+
+    function createMatch(name) {
+        console.log(`${name} added to matches!`)
+    }
+
+    function noMatch() {
+        console.log("No match here!")
+    }
+
+
+    const outOfFrame = () => {
+        console.log(' left the screen!')
     }
 
     return (
-        <TinderCard 
-            onSwipe={onSwipe} 
-            onCardLeftScreen={() => onCardLeftScreen('fooBar')} 
-            preventSwipe={['right', 'left']}
-            className="card"
-        >
-            <CardContent 
-                            
-            />
-        </TinderCard>
+        <div className='cardContainer'>
+            {pets ? pets.map((pet) =>
+                <TinderCard 
+                className='swipe' key={pet.id} 
+                onSwipe={(dir) => swiped(dir, pet.name)} 
+                onCardLeftScreen={() => outOfFrame(pet.name)}>
+                    <div style={{ backgroundImage: 'url(' + pet.photo + ')' }} className='card'>
+                        <h3>{pet.name}</h3>
+                        <h2>{pet.age} {pet.bio}</h2>
+                    </div>
+                </TinderCard>
+            ): "loading"}
+        </div>
     )
 }
 
