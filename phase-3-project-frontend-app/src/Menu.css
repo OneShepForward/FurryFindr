@@ -1,7 +1,14 @@
 .Menu{
   position: relative;
   bottom: 10em;
-  left: 25em;
+  left: 20em;
+  margin: 2em 3em;
+}
+
+.UserMenu{
+  position: relative;
+  bottom: 10em;
+  left: 30em;
   margin: 2em 3em;
 }
 
@@ -28,11 +35,42 @@
   transition: 1s;
 }
 
+.user-item{
+  position: absolute;
+  top: 0;
+
+  width: 12em;
+  background-color: #44cfa5;
+  box-shadow: 1px 2px 2px #44cfa5;
+
+  padding: 0.2em;
+
+  border-radius: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.5em;
+  color: #EDFFEC;
+  cursor: pointer;
+
+  transition: 1s;
+}
+
 .m-item:hover{
   border: 1px solid black;
 }
 
 .m-logo{
+  z-index: 1;
+}
+
+.user-item:hover{
+  border: 1px solid black;
+}
+
+.user-logo{
   z-index: 1;
 }
 
@@ -62,7 +100,32 @@
   background-color: #9b5de5;
 }
 
-.open-6{
+.user-open-1{
+  top: 2em;
+  background-color: #e953da;
+}
+
+.user-open-2{
+  top: 4em;
+  background-color: #5eafd4;
+}
+
+.user-open-3{
+  top: 6em;
+  background-color: #1e8cb0;
+}
+
+.user-open-4{
+  top: 8em;
+  background-color: #142f48;
+}
+
+.user-open-5{
+  top: 10em;
+  background-color: #9b5de5;
+}
+
+/* .open-6{
   top: 12em;
   background-color: #f15bb5;
 }
@@ -85,7 +148,7 @@
 .open-10{
   top: 20em;
   background-color: #FFBBFF;
-}
+} */
 
 
 /* .App {

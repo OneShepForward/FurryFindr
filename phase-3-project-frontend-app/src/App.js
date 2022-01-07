@@ -4,39 +4,66 @@ import { useEffect, useState } from 'react';
 import TinderPile from './TinderPile';
 import Header from "./Header";
 
-
+  const sample_user =     
+{
+  "id": 1,
+  "name": "Balgruuf Black-Briar",
+  "age": 23,
+  "city": "Balmora",
+  "bio": "I forgot something.",
+  "interested_in": "Any furry friend!",
+  "photo": "https://robohash.org/optioetomnis.png?size=300x300&set=set1"
+}
 
 function App() {
 
   const [pets, setPets] = useState();
+  const [allPets, setAllPets] = useState();
   const [allAgencyData, setAllAgencyData] = useState([]);
   const [currentAgency, setCurrentAgency] = useState();
   const [allUserData, setAllUserData] = useState([]);
-  const [activeUserID, setUser] = useState(1);
-  // const [activeUser, setUser] = useState(sample_user);
+  // const [allUserData, setAllUserData] = useState([]);
+  const [activeUserID, setActiveUserID] = useState(1);
+  const [activeUser, setUser] = useState(sample_user);
   const [isRendered, setRendered] = useState(false);
 
   useEffect(()=> {
     fetch('http://localhost:9292/pets')
     .then((res) => res.json())
-    .then(data => setPets(data))
-    // fetch('http://localhost:9292/users')
-    // .then(res => res.json())
-    // .then(userData => {
-    //   setAllUserData(userData);
-    //   setUser(userData[0])
-    // })
+    .then(petData => {
+      setPets(petData)
+      setAllPets(petData)
+    })
+    fetch('http://localhost:9292/users')
+    .then(res => res.json())
+    .then(userData => {
+      setAllUserData(userData);
+      setActiveUserID(userData[0].id)
+    })
     fetch('http://localhost:9292/agencies')
     .then(res => res.json())
     .then(agencyData => setAllAgencyData(agencyData))
     .then(setRendered(true))
   }, [])
 
-  const handleUserClicked = (agency) => {
-        // setUser(user.id)
-        // passing in the entire user instead of id
-        console.log(agency);
+  const handleAgencyClicked = (agency) => {
+        if (agency === "All") {
+          setPets(allPets)
+          setCurrentAgency()
+        } else {
+        console.log("App says agency: ", agency);
+        console.log("All pets: ", allPets)
+        setPets(allPets)
+        setCurrentAgency()
         setCurrentAgency(agency);
+        setPets(pets.filter(pet => pet.agency_id === agency.id))
+        }
+  }
+
+  const handleUserClicked = (user) => {
+      console.log("Current user is now: ", user)  
+      setUser(user)
+        // passing in the entire user instead of id
   }
 
   // console.log("Active User is:", activeUser.id)
@@ -45,16 +72,17 @@ function App() {
     <div className="App">
       <Header
       isRendered = {isRendered}
-      // allUserData = {allUserData}
-      // activeUser = {activeUserID}
+      allUserData = {allUserData}
+      activeUser = {activeUser}
       allAgencyData = {allAgencyData}
       currentAgency = {currentAgency}
       handleUserClicked = {handleUserClicked}
+      handleAgencyClicked = {handleAgencyClicked}
       />
       <h1>Match with some fabulous pets!</h1>
       <TinderPile 
         pets = {pets}
-        user = {activeUserID}
+        userID = {activeUserID}
       />
     </div>
   );
