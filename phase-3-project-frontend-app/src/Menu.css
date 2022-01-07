@@ -1,11 +1,7 @@
-/* .nav-bar{
-
-} */
-
 .Menu{
   position: relative;
   bottom: 10em;
-  left: 20em;
+  left: 35em;
   margin: 2em 3em;
 }
 
@@ -42,52 +38,52 @@
 
 /* This might be something we have to do in line to make it more DRY */
 .open-1{
-  top: 1.8em;
+  top: 2em;
   background-color: #9b5de5;
 }
 
 .open-2{
-  top: 3.6em;
+  top: 4em;
   background-color: #f15bb5;
 }
 
 .open-3{
-  top: 5.4em;
+  top: 6em;
   background-color: #00BBF9;
 }
 
 .open-4{
-  top: 7.2em;
+  top: 8em;
   background-color: #FFBBFF;
 }
 
 .open-5{
-  top: 9.0em;
+  top: 10em;
   background-color: #9b5de5;
 }
 
 .open-6{
-  top: 10.8em;
+  top: 12em;
   background-color: #f15bb5;
 }
 
 .open-7{
-  top: 12.6em;
+  top: 14em;
   background-color: #00BBF9;
 }
 
 .open-8{
-  top: 14.4em;
+  top: 16em;
   background-color: #FFBBFF;
 }
 
 .open-9{
-  top: 16.2em;
+  top: 18em;
   background-color: #00BBF9;
 }
 
 .open-10{
-  top: 18.0em;
+  top: 20em;
   background-color: #FFBBFF;
 }
 

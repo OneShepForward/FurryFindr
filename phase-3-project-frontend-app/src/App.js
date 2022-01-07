@@ -7,6 +7,8 @@ import Header from "./Header";
 
 
 function App() {
+
+  // I have these as the starting state for activeUser and allUserData
   const sample_user =     
 {
   "id": 1,
@@ -47,9 +49,15 @@ const sample_user_array = [
   "photo": "https://robohash.org/asperioresadipiscidebitis.png?size=300x300&set=set1"
 },]
 
+
+
+
   const [pets, setPets] = useState();
-  const [allUserData, setAllUserData] = useState(sample_user_array);
-  const [activeUser, setUser] = useState(sample_user);
+  const [allUserData, setAllUserData] = useState([]);
+  const [activeUser, setUser] = useState({});
+  const [isRendered, setRendered] = useState(false);
+  // const [allUserData, setAllUserData] = useState(sample_user_array);
+  // const [activeUser, setUser] = useState(sample_user);
 
   useEffect(()=> {
     fetch('http://localhost:9292/pets')
@@ -57,24 +65,26 @@ const sample_user_array = [
     .then(data => setPets(data))
     fetch('http://localhost:9292/users')
     .then(res => res.json())
-    .then(userData => setAllUserData(userData))
+    .then(userData => {
+      // console.log(userData);
+      setAllUserData(userData);
+      setUser(userData[0])
+    })
+    .then(setRendered(true))
   }, [])
 
   const handleUserClicked = (user) => {
         // setUser(user.id)
         // passing in the entire user instead of id
         setUser(user);
-        activeUserAnnouncement();
   }
 
-  // console.log("The active user is:", activeUser)
-  function activeUserAnnouncement() {
-    console.log("App.js says: User is now:", activeUser.name, activeUser.id)
-  }
+  console.log("Active User is:", activeUser)
 
   return (
     <div className="App">
       <Header
+      isRendered = {isRendered}
       allUserData = {allUserData}
       activeUser = {activeUser}
       handleUserClicked = {handleUserClicked}
