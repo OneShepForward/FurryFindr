@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import "./Menu.css"; 
 
 // function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
-function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered } ) {
+function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
+                    activeUser, allUserData, handleAgencyClicked } ) {
     // openMenu will allow for cascade dropdown menu
     const [openMenu, setOpenMenu] = useState(false)
-
-    console.log(allAgencyData);
+    const [openUserMenu, setOpenUserMenu] = useState(false)
 
     // num corresponds to .open-# classes
     // is assigned when the Menu is clicked to trigger dropdown
@@ -19,20 +19,42 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered }
         return classArr.join(' ')
     }
 
+    const setUserClassName = num => {
+        const classArr = ["user-item"];
+        if (openUserMenu) classArr.push(`user-open-${num}`)
+        return classArr.join(' ')
+    }
+
     // sets User and closes Menu
-    const userClicked = agency => {
-        console.log(agency)
-        handleUserClicked(agency)
+    const agencyClicked = agency => {
+        console.log("Agency clicked: ", agency)
+        handleAgencyClicked(agency)
         setOpenMenu(!openMenu)
+    }
+    
+    const userClicked = user => {
+        console.log("User clicked: ", user)
+        handleUserClicked(user)
+        setOpenUserMenu(!openUserMenu)
     }
 
     const renderAgencies = allAgencyData.map((agency) => {
         return <div
             key={agency.id} 
             className={setClassName(agency.id)}
-            onClick={() => userClicked(agency)}
+            onClick={() => agencyClicked(agency)}
         >
             {agency.city}
+        </div>        
+    });
+
+    const renderUsers = allUserData.map((user) => {
+        return <div
+            key={user.id} 
+            className={setUserClassName(user.id)}
+            onClick={() => userClicked(user)}
+        >
+            {user.name}
         </div>        
     });
 
@@ -57,6 +79,22 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered }
                     Agencies
                 </div>
                 {renderAgencies}
+                <div
+                className={setClassName(5)}
+                // The "Show All" button shows all pets that have not yet
+                // been swiped out of the stack. It does not repopulate previously
+                // swiped pets.
+                onClick={() => agencyClicked("All")}
+                >
+                Show All
+                </div>
+            </div>
+            <div className="UserMenu">
+                <div className={"user-item user-logo"}
+                    onClick={() => setOpenUserMenu(!openUserMenu)}>
+                    Users
+                </div>
+                {renderUsers}
             </div>
         </div>    
     );
