@@ -3,32 +3,33 @@ import TinderCard from 'react-tinder-card'
 
 function TinderPile( {pets, user} ) {
     // const [lastDirection, setLastDirection] = useState();
-    console.log(user)
+    console.log("TinderPile says the Active user is:", user)
 
-    const swiped = (direction, pet) => {
+    const swiped = (direction, pet, user) => {
         console.log(direction)
         if (direction === "right") {
-            createMatch(pet)
+            createMatch(pet, user)
         } else {
             noMatch()
         }
         // setLastDirection(direction)
     }
 
-    function createMatch(pet) {
+    function createMatch(pet, currentUser) {
         console.log(`${pet.name} added to matches!`)
-        fetch('http://localhost:9292/matches', {
-            method: `POST`,
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                user_id: `${user}`,
-                pet_id: `${pet.id}`
-            })
-        })
-        .then((r) => r.json())
-        .then (console.log("Success!"))
+        console.log("line 20", currentUser)
+        // fetch('http://localhost:9292/matches', {
+        //     method: `POST`,
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         user_id: `${user}`,
+        //         pet_id: `${pet.id}`
+        //     })
+        // })
+        // .then((r) => r.json())
+        // .then (console.log(`Success! ${user.id} matched with ${pet.id}!`))
     }
 
     function noMatch() {
@@ -45,7 +46,7 @@ function TinderPile( {pets, user} ) {
             {pets ? pets.map((pet) =>
                 <TinderCard 
                 className='swipe' key={pet.id} 
-                onSwipe={(dir) => swiped(dir, pet)} 
+                onSwipe={(dir) => swiped(dir, pet, user)} 
                 onCardLeftScreen={() => outOfFrame(pet.name)}>
                     <div style={{ backgroundImage: 'url(' + pet.photo + ')' }} className='card'>
                         <h3>{pet.name}</h3>
