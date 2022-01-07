@@ -18,11 +18,15 @@ function TinderPile( { pets, user } ) {
         }
         // setLastDirection(direction)
     }
+    
+    function getUser() {
+        return user;
+    }
 
     function createMatch(pet) {
         console.log(`${pet.name} added to matches!`)
         // ... and the fetch does the same as the swiped 
-        console.log("createMatch says current user is", user)
+        console.log("createMatch says current user is", getUser())
         fetch('http://localhost:9292/matches', {
             method: `POST`,
             headers: {
@@ -30,10 +34,11 @@ function TinderPile( { pets, user } ) {
             },
             body: JSON.stringify({
                 // If you hard code it like below, it will post with the hard code
-                user_id: 4,
+                // user_id: 4,
+
                 // Maybe when these Tinder Cards render, they imprint the current
                 // value for user?!
-                // user_id: user.id,
+                user_id: user.id,
                 pet_id: pet.id
             })
         })
@@ -45,7 +50,6 @@ function TinderPile( { pets, user } ) {
         console.log("No match here!")
     }
 
-
     const outOfFrame = () => {
         console.log(' left the screen!')
     }
@@ -55,6 +59,7 @@ function TinderPile( { pets, user } ) {
             {pets ? pets.map((pet) =>
                 <TinderCard 
                 className='swipe' 
+                currentUser = {user}
                 key={pet.id} 
                 onSwipe={(dir) => swiped(dir, pet)} 
                 onCardLeftScreen={() => outOfFrame(pet.name)}>

@@ -54,7 +54,8 @@ const sample_user_array = [
 
   const [pets, setPets] = useState();
   const [allUserData, setAllUserData] = useState([]);
-  const [activeUser, setUser] = useState({});
+  // const [activeUser, setUser] = useState({});
+  const [activeUser, setUser] = useState(sample_user);
   const [isRendered, setRendered] = useState(false);
   // const [allUserData, setAllUserData] = useState(sample_user_array);
   // const [activeUser, setUser] = useState(sample_user);
@@ -79,7 +80,7 @@ const sample_user_array = [
         setUser(user);
   }
 
-  console.log("Active User is:", activeUser)
+  // console.log("Active User is:", activeUser.id)
 
   return (
     <div className="App">

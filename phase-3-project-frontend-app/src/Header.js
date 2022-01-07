@@ -22,13 +22,6 @@ function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
         handleUserClicked(user)
         setOpenMenu(!openMenu)
     }
-    
-    // const renderUsers = allUserData.map((user) => (
-    //     <div style={{top: (1.8*user.id)em}}
-    //         onClick={() => userClicked(user)}>
-    //             {user.name}
-    //     </div>        
-    // ));
 
     const renderUsers = allUserData.map((user) => {
         return <div
