@@ -4,9 +4,12 @@ import { useEffect, useState } from 'react';
 // to incorporate styling
 import "./Menu.css"; 
 
-function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
+// function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
+function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered } ) {
     // openMenu will allow for cascade dropdown menu
     const [openMenu, setOpenMenu] = useState(false)
+
+    console.log(allAgencyData);
 
     // num corresponds to .open-# classes
     // is assigned when the Menu is clicked to trigger dropdown
@@ -17,19 +20,19 @@ function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
     }
 
     // sets User and closes Menu
-    const userClicked = user => {
-        // console.log(user)
-        handleUserClicked(user)
+    const userClicked = agency => {
+        console.log(agency)
+        handleUserClicked(agency)
         setOpenMenu(!openMenu)
     }
 
-    const renderUsers = allUserData.map((user) => {
+    const renderAgencies = allAgencyData.map((agency) => {
         return <div
-            key={user.id} 
-            className={setClassName(user.id)}
-            onClick={() => userClicked(user)}
+            key={agency.id} 
+            className={setClassName(agency.id)}
+            onClick={() => userClicked(agency)}
         >
-            {user.name}
+            {agency.city}
         </div>        
     });
 
@@ -37,16 +40,23 @@ function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
     if (isRendered) {
     return (
         <div className="nav-bar">
+            {currentAgency ? 
+            (
             <h1 className="active-user">
-            Welcome to FurryFindr, {activeUser.name}
-            </h1>
+            Browsing FurryFindr in {currentAgency.city}
+            </h1> 
+            ) :
+            <h1 className="active-user">
+            Welcome to FurryFindr!
+            </h1> 
+            }
             {/* This renders all of the user selections */}
             <div className="Menu">
                 <div className={"m-item m-logo"}
                     onClick={() => setOpenMenu(!openMenu)}>
-                    User Login
+                    Agencies
                 </div>
-                {renderUsers}
+                {renderAgencies}
             </div>
         </div>    
     );

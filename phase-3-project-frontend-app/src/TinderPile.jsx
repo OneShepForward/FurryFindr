@@ -5,7 +5,7 @@ function TinderPile( { pets, user } ) {
     // const [lastDirection, setLastDirection] = useState();
 
     // The TinderPile receives the updated activeUser here...
-    console.log("TinderPile says the Active user is:", user)
+    // console.log("TinderPile says the Active user is:", user)
 
     const swiped = (direction, pet) => {
         console.log(direction)
@@ -18,15 +18,11 @@ function TinderPile( { pets, user } ) {
         }
         // setLastDirection(direction)
     }
-    
-    function getUser() {
-        return user;
-    }
 
     function createMatch(pet) {
         console.log(`${pet.name} added to matches!`)
         // ... and the fetch does the same as the swiped 
-        console.log("createMatch says current user is", getUser())
+        console.log("createMatch says current user is", user)
         fetch('http://localhost:9292/matches', {
             method: `POST`,
             headers: {
@@ -38,7 +34,7 @@ function TinderPile( { pets, user } ) {
 
                 // Maybe when these Tinder Cards render, they imprint the current
                 // value for user?!
-                user_id: user.id,
+                user_id: user,
                 pet_id: pet.id
             })
         })
@@ -59,7 +55,7 @@ function TinderPile( { pets, user } ) {
             {pets ? pets.map((pet) =>
                 <TinderCard 
                 className='swipe' 
-                currentUser = {user}
+                // currentUser = {user}
                 key={pet.id} 
                 onSwipe={(dir) => swiped(dir, pet)} 
                 onCardLeftScreen={() => outOfFrame(pet.name)}>

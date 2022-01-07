@@ -1,7 +1,7 @@
 .Menu{
   position: relative;
   bottom: 10em;
-  left: 35em;
+  left: 25em;
   margin: 2em 3em;
 }
 
@@ -9,9 +9,9 @@
   position: absolute;
   top: 0;
 
-  width: 12em;
-  background-color: #3014AB;
-  box-shadow: 1px 2px 2px #3014AB;
+  width: 6em;
+  background-color: #4c44cf;
+  box-shadow: 1px 2px 2px #4c44cf;
 
   padding: 0.2em;
 
@@ -39,22 +39,22 @@
 /* This might be something we have to do in line to make it more DRY */
 .open-1{
   top: 2em;
-  background-color: #9b5de5;
+  background-color: #e953da;
 }
 
 .open-2{
   top: 4em;
-  background-color: #f15bb5;
+  background-color: #5eafd4;
 }
 
 .open-3{
   top: 6em;
-  background-color: #00BBF9;
+  background-color: #1e8cb0;
 }
 
 .open-4{
   top: 8em;
-  background-color: #FFBBFF;
+  background-color: #142f48;
 }
 
 .open-5{
