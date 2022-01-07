@@ -1,0 +1,128 @@
+.Menu{
+  position: relative;
+  bottom: 10em;
+  left: 25em;
+  margin: 2em 3em;
+}
+
+.m-item{
+  position: absolute;
+  top: 0;
+
+  width: 6em;
+  background-color: #4c44cf;
+  box-shadow: 1px 2px 2px #4c44cf;
+
+  padding: 0.2em;
+
+  border-radius: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.5em;
+  color: #EDFFEC;
+  cursor: pointer;
+
+  transition: 1s;
+}
+
+.m-item:hover{
+  border: 1px solid black;
+}
+
+.m-logo{
+  z-index: 1;
+}
+
+/* This might be something we have to do in line to make it more DRY */
+.open-1{
+  top: 2em;
+  background-color: #e953da;
+}
+
+.open-2{
+  top: 4em;
+  background-color: #5eafd4;
+}
+
+.open-3{
+  top: 6em;
+  background-color: #1e8cb0;
+}
+
+.open-4{
+  top: 8em;
+  background-color: #142f48;
+}
+
+.open-5{
+  top: 10em;
+  background-color: #9b5de5;
+}
+
+.open-6{
+  top: 12em;
+  background-color: #f15bb5;
+}
+
+.open-7{
+  top: 14em;
+  background-color: #00BBF9;
+}
+
+.open-8{
+  top: 16em;
+  background-color: #FFBBFF;
+}
+
+.open-9{
+  top: 18em;
+  background-color: #00BBF9;
+}
+
+.open-10{
+  top: 20em;
+  background-color: #FFBBFF;
+}
+
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
