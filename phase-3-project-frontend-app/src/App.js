@@ -30,10 +30,11 @@ function App() {
   useEffect(()=> {
     fetch('http://localhost:9292/pets')
     .then((res) => res.json())
-    .then(petData => {
-      setPets(petData)
-      setAllPets(petData)
+    .then(petData => {setAllPets(petData)
     })
+    fetch('http://localhost:9292/pets/not/1')
+    .then((res) => res.json())
+    .then(petData => setPets(petData))
     fetch('http://localhost:9292/users')
     .then(res => res.json())
     .then(userData => {
@@ -47,23 +48,26 @@ function App() {
   }, [])
 
   const handleAgencyClicked = (agency) => {
-        if (agency === "All") {
-          setPets(allPets)
-          setCurrentAgency()
-        } else {
-        console.log("App says agency: ", agency);
-        console.log("All pets: ", allPets)
-        setPets(allPets)
-        setCurrentAgency()
-        setCurrentAgency(agency);
-        setPets(pets.filter(pet => pet.agency_id === agency.id))
-        }
+    if (agency === "All") {
+      setPets(allPets)
+      setCurrentAgency()
+    } else {
+      console.log("App says agency: ", agency);
+      console.log("All pets: ", allPets)
+      setPets(allPets)
+      setCurrentAgency()
+      setCurrentAgency(agency);
+      setPets(pets.filter(pet => pet.agency_id === agency.id))
+    }
   }
 
   const handleUserClicked = (user) => {
-      console.log("Current user is now: ", user)  
-      setUser(user)
+    console.log("Current user is now: ", user)  
+    setUser(user)
         // passing in the entire user instead of id
+    fetch(`http://localhost:9292/pets/${user.id}`)
+    .then (res => res.json())
+    .then(retrievedPets => setPets(retrievedPets))
   }
 
   // console.log("Active User is:", activeUser.id)
