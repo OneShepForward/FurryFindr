@@ -1,0 +1,7 @@
+.Grid-container {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    grid-template-rows: 250px;
+    grid-template-columns: repeat(4, 250px);
+}

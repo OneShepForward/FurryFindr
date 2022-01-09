@@ -3,6 +3,8 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import TinderPile from './TinderPile';
 import Header from "./Header";
+import UserView from './UserView';
+import AgencyView from './AgencyView';
 
   const sample_user =     
 {
@@ -26,6 +28,7 @@ function App() {
   const [activeUserID, setActiveUserID] = useState(1);
   const [activeUser, setUser] = useState(sample_user);
   const [isRendered, setRendered] = useState(false);
+  const [viewerState, setViewerState] = useState(null)
 
   useEffect(()=> {
     fetch('http://localhost:9292/pets')
@@ -38,7 +41,7 @@ function App() {
     fetch('http://localhost:9292/users')
     .then(res => res.json())
     .then(userData => {
-      setAllUserData(userData);
+      setAllUserData(userData.slice(0, 5));
       setActiveUserID(userData[0].id)
     })
     fetch('http://localhost:9292/agencies')
@@ -51,9 +54,11 @@ function App() {
     if (agency === "All") {
       setPets(allPets)
       setCurrentAgency()
+      setViewerState(null)
     } else {
       console.log("App says agency: ", agency);
       console.log("All pets: ", allPets)
+      setViewerState("agency")
       setPets(allPets)
       setCurrentAgency()
       setCurrentAgency(agency);
@@ -62,15 +67,40 @@ function App() {
   }
 
   const handleUserClicked = (user) => {
-    console.log("Current user is now: ", user)  
-    setUser(user)
-        // passing in the entire user instead of id
-    fetch(`http://localhost:9292/pets/${user.id}`)
-    .then (res => res.json())
-    .then(retrievedPets => setPets(retrievedPets))
+    if (user==="All") {
+      setPets(allPets)
+      setCurrentAgency()
+      setViewerState(null)
+    } else {
+      console.log("Current user is now: ", user)  
+      setUser(user)
+      setViewerState("user")
+          // passing in the entire user instead of id
+      fetch(`http://localhost:9292/pets/${user.id}`)
+      .then (res => res.json())
+      .then(retrievedPets => setPets(retrievedPets))
+    }
   }
 
   // console.log("Active User is:", activeUser.id)
+
+  const viewContent = () => {
+    if (viewerState==="agency") {
+      return <AgencyView 
+        agency = {currentAgency}
+        pets = {pets}
+      />
+    } else if (viewerState==="user") {
+      return <UserView 
+        user = {activeUser}
+      />
+    } else {
+      return <TinderPile 
+        pets = {pets}
+        userID = {activeUserID}
+      />
+    }
+  }
 
   return (
     <div className="App">
@@ -83,11 +113,7 @@ function App() {
       handleUserClicked = {handleUserClicked}
       handleAgencyClicked = {handleAgencyClicked}
       />
-      <h1>Match with some fabulous pets!</h1>
-      <TinderPile 
-        pets = {pets}
-        userID = {activeUserID}
-      />
+      {viewContent()}
     </div>
   );
 }

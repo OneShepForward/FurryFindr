@@ -80,13 +80,13 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
                 </div>
                 {renderAgencies}
                 <div
-                className={setClassName(5)}
-                // The "Show All" button shows all pets that have not yet
-                // been swiped out of the stack. It does not repopulate previously
-                // swiped pets.
-                onClick={() => agencyClicked("All")}
+                    className={setClassName(5)}
+                    // The "Show All" button shows all pets that have not yet
+                    // been swiped out of the stack. It does not repopulate previously
+                    // swiped pets.
+                    onClick={() => agencyClicked("All")}
                 >
-                Show All
+                    Show All
                 </div>
             </div>
             <div className="UserMenu">
@@ -95,6 +95,12 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
                     Users
                 </div>
                 {renderUsers}
+                <div
+                    className={setUserClassName(6)}
+                    onClick={() => userClicked("All")}
+                >
+                    Show All
+                </div>
             </div>
         </div>    
     );
