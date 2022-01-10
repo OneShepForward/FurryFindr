@@ -70,13 +70,17 @@ function App() {
       .then(petData => setPets(petData))
       setCurrentAgency()
     } else {
-      console.log("App says agency: ", agency);
-      console.log("All pets: ", allPets)
-      setPets(allPets)
-      setCurrentAgency()
-      setCurrentAgency(agency);
-      setPets(pets.filter(pet => pet.agency_id === agency.id))
+      setAgencyPets(agency)
     }
+  }
+  
+  function setAgencyPets (agency) {
+    console.log("App says agency: ", agency);
+    console.log("All pets: ", allPets)
+    setCurrentAgency()
+    setCurrentAgency(agency);
+    console.log(pets)
+    setPets(allPets.filter(pet => pet.agency_id === agency.id));
   }
   
   const handleUserClicked = (user) => {
