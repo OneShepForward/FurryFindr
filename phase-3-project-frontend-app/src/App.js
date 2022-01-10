@@ -80,6 +80,10 @@ function App() {
     })
   }
 
+  // const handleDeleteClicked = (match) => {
+
+  // }
+
   // console.log("Active User is:", activeUser.id)
 
   return (

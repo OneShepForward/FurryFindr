@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import UserMatch from "./UserMatch";
 
 function UserView( { activeUser, pets } ) {
     // const [petList, setPetList] = useState()
@@ -22,12 +23,12 @@ console.log(pets)
 
    function renderMatches () { 
        return pets.map((pet) => {
-        return <div
+        return <UserMatch
             key = {pet.id}
+            pet = {pet}
             className="listedPet"
-       >
-        {pet.name}
-       </div>
+        >
+       </UserMatch>
    })
 }
 
