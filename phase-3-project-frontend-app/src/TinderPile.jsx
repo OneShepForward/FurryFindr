@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import TinderCard from 'react-tinder-card'
 
-function TinderPile( { pets, userID } ) {
-    // const [lastDirection, setLastDirection] = useState();
+function TinderPile( { pets, userID, allAgencyData } ) {
 
     // The TinderPile receives the updated activeUser here...
     // console.log("TinderPile says the Active user is:", user)
@@ -50,6 +49,22 @@ function TinderPile( { pets, userID } ) {
         console.log(' left the screen!')
     }
 
+    function get_agency_of_pet (agency_id) {
+        switch (agency_id) {
+            case allAgencyData[0].id:
+                return `${allAgencyData[0].name}`
+                break;
+            case allAgencyData[1].id:
+                return `${allAgencyData[1].name}`
+                break;
+            case allAgencyData[2].id:
+                return `${allAgencyData[2].name}`
+                break;
+            case allAgencyData[3].id:
+                return `${allAgencyData[3].name}`
+        }
+    }
+
     return (
         <div className='cardContainer'>
             {pets ? pets.map((pet) =>
@@ -60,7 +75,7 @@ function TinderPile( { pets, userID } ) {
                 onSwipe={(dir) => swiped(dir, pet)} 
                 onCardLeftScreen={() => outOfFrame(pet.name)}>
                     <div style={{ backgroundImage: 'url(' + pet.photo + ')' }} className='card'>
-                        <h3>{pet.name} - {pet.agency_id}</h3>
+                        <h3>{pet.name} - {get_agency_of_pet(pet.agency_id)}</h3>
                         <h2>{pet.age} {pet.bio}</h2>
                     </div>
                 </TinderCard>

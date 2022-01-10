@@ -2,11 +2,11 @@ import React, { useReducer } from 'react';
 import { useEffect, useState } from 'react';
 
 // to incorporate styling
-import "./Menu.css"; 
+import "./Header.css"; 
 
 // function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
 function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
-                    activeUser, allUserData, handleAgencyClicked } ) {
+                    activeUser, allUserData, handleAgencyClicked, handleLetsMatchClick } ) {
     // openMenu will allow for cascade dropdown menu
     const [openMenu, setOpenMenu] = useState(false)
     const [openUserMenu, setOpenUserMenu] = useState(false)
@@ -36,6 +36,10 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
         console.log("User clicked: ", user)
         handleUserClicked(user)
         setOpenUserMenu(!openUserMenu)
+    }
+
+    const handleLetsMatch = () => {
+        handleLetsMatchClick()
     }
 
     const renderAgencies = allAgencyData.map((agency) => {
@@ -73,6 +77,13 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
             </h1> 
             }
             {/* This renders all of the user selections */}
+            <div className='lets-match-button'>
+                <div 
+                    className={"match-item match-logo"}
+                    onClick={() => handleLetsMatch()}>
+                        Let's Match!
+                </div>
+            </div>
             <div className="Menu">
                 <div className={"m-item m-logo"}
                     onClick={() => setOpenMenu(!openMenu)}>
@@ -92,7 +103,7 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
             <div className="UserMenu">
                 <div className={"user-item user-logo"}
                     onClick={() => setOpenUserMenu(!openUserMenu)}>
-                    Users
+                    Show Matches by User
                 </div>
                 {renderUsers}
             </div>

@@ -3,19 +3,8 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import TinderPile from './TinderPile';
 import Header from "./Header";
-
 import UserView from './UserView';
-
-  const sample_user =     
-{
-  "id": 1,
-  "name": "Balgruuf Black-Briar",
-  "age": 23,
-  "city": "Balmora",
-  "bio": "I forgot something.",
-  "interested_in": "Any furry friend!",
-  "photo": "https://robohash.org/optioetomnis.png?size=300x300&set=set1"
-}
+import furryfindr_logo from './furryfindr_logo.png';
 
 function App() {
   const initial_user_id = 1
@@ -27,6 +16,8 @@ function App() {
   const [allUserData, setAllUserData] = useState([]);
   const [activeUser, setUser] = useState();
   const [isRendered, setRendered] = useState(false);
+  const [isIntro, setIntro] = useState(true);
+  const [isVisible, setVisible] = useState(false);
 
   useEffect(()=> {
     // fetch all pets in the database
@@ -51,6 +42,19 @@ function App() {
     .then(res => res.json())
     .then(agencyData => setAllAgencyData(agencyData))
     .then(setRendered(true))
+
+    setVisible(true);
+
+    const timer = setTimeout(() => {
+      setIntro(false);
+  }, 2500);
+
+  //cleanup function 
+  return function cleanup() {
+      console.log("Running cleanup");
+      // ✅ clear the interval so state is no longer updated
+      clearInterval(timer);
+      };
   }, [])
 
     // filter by agency or return to all cities
@@ -86,9 +90,42 @@ function App() {
     // console.log(the_user)
   }
 
-  // console.log("Active User is:", activeUser.id)
+  const handleLetsMatchClick = () => {
+    setUser()
+  }
 
+  let currentView;
+  function viewChanger () {
+  if (activeUser) {
+    currentView = <UserView
+                  activeUser = {activeUser}
+                  pets = {pets}
+                  handleDelete = {handleDeleteClicked}
+                />}
+    else {
+    currentView = <div>
+      <h1>Match with some fabulous pets!</h1>
+      <TinderPile 
+        pets = {pets}
+        userID = {activeUserID}
+        allAgencyData = {allAgencyData}
+      />
+    </div> }
+  } 
+
+  
+viewChanger();
+
+if (isIntro) {
   return (
+    <div className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}>      
+      <img src={furryfindr_logo}/>
+    </div>
+  )
+}  
+else {
+return (
+
     <div className="App">
       <Header
       isRendered = {isRendered}
@@ -98,33 +135,16 @@ function App() {
       currentAgency = {currentAgency}
       handleUserClicked = {handleUserClicked}
       handleAgencyClicked = {handleAgencyClicked}
+      handleLetsMatchClick = {handleLetsMatchClick}
       />
 
-      {/* <h1>Match with some fabulous pets!</h1>
-      <TinderPile 
-        pets = {pets}
-        userID = {activeUserID}
-      /> */}
+      {/* Displays either User Matches or Tinder Pile */}
+      {currentView}
 
-  {activeUser ? 
-      <UserView
-        activeUser = {activeUser}
-        pets = {pets}
-        handleDelete = {handleDeleteClicked}
-      />
-      :
-      <div>
-        <h1>Match with some fabulous pets!</h1>
-        <TinderPile 
-          pets = {pets}
-          userID = {activeUserID}
-        />
-      </div>
-
-    } 
-    {/* // end of activeUser ternary */}
     </div>
+
   );
+}
 }
 
 export default App;

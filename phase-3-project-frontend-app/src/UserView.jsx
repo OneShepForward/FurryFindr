@@ -30,7 +30,7 @@ function UserView( { activeUser, pets, handleDelete } ) {
                     )
                     :
                     (
-                    <h2>"No matches yet. Find a furry friend!"</h2>
+                    <h2>No matches yet. Find a furry friend!</h2>
                     )
             :
                 "Loading..."
