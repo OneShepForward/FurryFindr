@@ -1,46 +1,22 @@
 import React, {useState, useEffect} from "react";
 import UserMatch from "./UserMatch";
 
-function UserView( { activeUser, pets } ) {
-    // const [petList, setPetList] = useState()
-    // console.log("UserView says the Active user is:", user)
+function UserView( { activeUser, pets, handleDelete } ) {
 
-    // useEffect(()=> {
-    //     fetch(`/pets/${activeUser.id}`)
-    //     .then(res => res.json())
-    //     .then(petsToRender => setPetList(petsToRender))
-    //   }, [])
-
-//    const renderMatches = pets.map((pet) => {
-//        return <div
-//             key = {pet.id}
-//             className="listedPet"
-//        >
-//         {pet.name}
-//        </div>
-//    });
-console.log(pets)
+// console.log(pets)
 
    function renderMatches () { 
        return pets.map((pet) => {
         return <UserMatch
             key = {pet.id}
             pet = {pet}
+            activeUser = {activeUser}
             className="listedPet"
+            handleDelete = {handleDelete}
         >
        </UserMatch>
    })
 }
-
-//    const renderMatches = allUserData.map((user) => {
-//         return <div
-//             key={user.id} 
-//             className={setUserClassName(user.id)}
-//             onClick={() => userClicked(user)}
-//         >
-//         {user.name}
-//     </div>        
-// });
    
     return (
         <div className='user-view'>

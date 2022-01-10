@@ -80,9 +80,11 @@ function App() {
     })
   }
 
-  // const handleDeleteClicked = (match) => {
-
-  // }
+  const handleDeleteClicked = (the_user, pet) => {
+    handleUserClicked(the_user)
+    // console.log(pet)
+    // console.log(the_user)
+  }
 
   // console.log("Active User is:", activeUser.id)
 
@@ -108,6 +110,7 @@ function App() {
       <UserView
         activeUser = {activeUser}
         pets = {pets}
+        handleDelete = {handleDeleteClicked}
       />
       :
       <div>

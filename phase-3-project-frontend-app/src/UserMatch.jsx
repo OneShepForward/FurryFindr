@@ -1,23 +1,18 @@
 import React, { useState } from "react";
 
-function UserMatch( { pet }) {
+function UserMatch( { pet, handleDelete, activeUser }) {
   
-  const [favoriteStatus, favoriteSetter] = useState(false);
+console.log(activeUser)
 
-
-  function toggleFavorite() {
-    favoriteSetter(!favoriteStatus);
-  }
-
-  function handleDeleteClick() {
-    // console.log("Delete:", listing)
-    fetch(`http://localhost:6001/listings/${pet.id}`, {
+  function deleteClicked(pet) {
+    console.log("Delete:", pet.name, activeUser)
+    fetch(`http://localhost:9292/matches/delete/${pet.id}/${activeUser.id}`, {
       method: "DELETE"
     })
     .then(resp => resp.json())
-    .then(() => console.log("clicked"))
-
-  }
+    .then(() => handleDelete(activeUser, pet))
+    console.log("clicked", pet.id, activeUser.id)
+    }
   
   
   return (
@@ -33,21 +28,10 @@ function UserMatch( { pet }) {
           <div className="user-match-name">{pet.name}</div>
         <span className="age">Age: {pet.age}</span>
       <div className="details">
-        {/* {favoriteStatus ? (
-          <button 
-          className="emoji-button favorite active"
-          onClick={toggleFavorite}
-          >★</button>
-        ) : (
-          <button 
-          className="emoji-button favorite"
-          onClick={toggleFavorite}
-          >☆</button>
-        )} */}
         <div>Mantra: "{pet.bio}"</div>
         <button 
             className="emoji-button delete"
-            onClick={handleDeleteClick}>❌
+            onClick={() => deleteClicked(pet)}>❌
             <span style={{fontSize: "14px", marginTop: "auto"}}> Delete Match </span>
         </button>
       </div>
