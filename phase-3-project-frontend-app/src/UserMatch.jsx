@@ -14,26 +14,27 @@ console.log(activeUser)
     console.log("clicked", pet.id, activeUser.id)
     }
   
+    const truncate = (str) => str.length > 60 ? str.substring(0,60) + "..." : str;
   
   return (
     <div className="user-match-card">
-      <span className="image">
-        <img 
-        src={pet.photo} 
-        className="user-match-image"
-        alt={`cute picture of ${pet.name}`}
-        />
-      </span>
-          <div className="user-match-name">{pet.name}</div>
+      <div class="top-section">
+        <span className="image">
+          <img 
+          src={pet.photo} 
+          className="user-match-image"
+          alt={`cute picture of ${pet.name}`}
+          />
+        </span>
+        <div className="user-match-name">{pet.name}</div>
         <span className="age">Age: {pet.age}</span>
-      <div className="details">
-        <div>Mantra: "{pet.bio}"</div>
-        <button 
-            className="emoji-button delete"
-            onClick={() => deleteClicked(pet)}>❌
-            <span style={{fontSize: "14px", marginTop: "auto"}}> Delete Match </span>
-        </button>
+        <div style = {{overflow: 'hidden', textOverflow: 'ellipsis'}}>Mantra: "{truncate(pet.bio)}"</div>
       </div>
+      <button 
+        className="emoji-button delete"
+        onClick={() => deleteClicked(pet)}>❌
+          <span style={{fontSize: "14px", marginTop: "auto"}}> Delete Match </span>
+      </button>
     </div>
   );
 }
