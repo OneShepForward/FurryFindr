@@ -73,7 +73,7 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
             </h1> 
             ) :
             <h1 className="active-user">
-            Welcome to FurryFindr!
+            Welcome to FurryFindr
             </h1> 
             }
             {/* This renders all of the user selections */}

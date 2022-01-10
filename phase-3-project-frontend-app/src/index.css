@@ -48,7 +48,7 @@ code {
 h1 {
   font-family: 'Wendy One', sans-serif;
   color: #1e8cb0;
-  text-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+  text-shadow: 5px 5px 5px 5px rgba(0,0,0,0.30);
   font-size: 48px;
 }
 
@@ -86,11 +86,31 @@ h2 {
   height: 100%;
 }
 
-.card h3 {
+/* .card h2 {
   position: absolute;
   bottom: 0;
+  font-size: xx-large;
   margin: 10px;
-  color: #fff;
+  color: rgb(255, 255, 255);
+  text-shadow: 3px 3px #0a0a0a;
+} */
+.card h2 {
+  position: relative;
+  bottom: -340px;
+  font-size: 24px;
+  margin: 20px;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px #0a0a0a;
+}
+.card h3 {
+  position: relative;
+  bottom: -350px;
+  font-size: 64px;
+  margin: 10px;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  text-shadow: 3px 3px #0a0a0a;
 }
 
 .infoText {
@@ -99,6 +119,7 @@ h2 {
   justify-content: center;
   display: flex;
   color: #fff;
+  text-shadow: 2px 2px #0a0a0a;
   animation-name: popup;
   animation-duration: 800ms;
 }
@@ -113,7 +134,7 @@ h2 {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  color: #fff;
+  color: rgb(255, 255, 255);
   font-size: 18px;
   background-color: #9198e5;
   transition: 200ms;

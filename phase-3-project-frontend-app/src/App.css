@@ -103,3 +103,22 @@
   transform: none;
   visibility: visible;
 }
+
+.pop-up {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 500ms ease-out,
+    visibility 500ms ease-out;
+  will-change: opacity, visibility;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -168px;
+  margin-left: -311.5px;
+}
+
+.pop-up.is-popping {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}

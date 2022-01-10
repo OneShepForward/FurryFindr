@@ -5,6 +5,7 @@ import TinderPile from './TinderPile';
 import Header from "./Header";
 import UserView from './UserView';
 import furryfindr_logo from './furryfindr_logo.png';
+import furryfindr_match from './furryfindr_match.png';
 
 function App() {
   const initial_user_id = 1
@@ -18,6 +19,7 @@ function App() {
   const [isRendered, setRendered] = useState(false);
   const [isIntro, setIntro] = useState(true);
   const [isVisible, setVisible] = useState(false);
+  const [matchPop, setPopup] = useState(false);
 
   useEffect(()=> {
     // fetch all pets in the database
@@ -94,6 +96,14 @@ function App() {
     setUser()
   }
 
+  const handleMatched = () => {
+      setPopup(true);
+      console.log(matchPop)
+      setTimeout(() => {
+        setPopup(false);
+    }, 1000);
+  }
+
   let currentView;
   function viewChanger () {
   if (activeUser) {
@@ -104,12 +114,19 @@ function App() {
                 />}
     else {
     currentView = <div>
-      <h1>Match with some fabulous pets!</h1>
+      <h1 style={{marginTop: "-25px"}}>Match with some fabulous pets!</h1>
       <TinderPile 
         pets = {pets}
         userID = {activeUserID}
         allAgencyData = {allAgencyData}
+        handleMatched = {handleMatched}
       />
+      <div style={{position: "absolute"}}>
+        <img 
+        src={furryfindr_match} 
+        alt="It's a match! popup"
+        className={`pop-up ${matchPop ? 'is-popping' : ''}`}/>
+      </div>
     </div> }
   } 
 

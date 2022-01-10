@@ -1,4 +1,4 @@
-.Menu{
+/* .Menu{
   position: relative;
   bottom: 10em;
   left: 20em;
@@ -16,6 +16,27 @@
   position: relative;
   bottom: 10em;
   left: 10.2em;
+  margin: 2em 3em;
+} */
+
+.UserMenu{
+  position: absolute;
+  top: 0em;
+  right: 20em;
+  margin: 2em 3em;
+}
+
+.Menu{
+  position: absolute;
+  top: 0em;
+  right: 30em;
+  margin: 2em 3em;
+}
+
+.lets-match-button {
+  position: absolute;
+  top: 0em;
+  right: 40em;
   margin: 2em 3em;
 }
 
@@ -161,6 +182,10 @@
 .user-open-5{
   top: 10em;
   background-color: #9b5de5;
+}
+
+.active-user {
+  margin-top: 20%;
 }
 
 /* .open-6{
