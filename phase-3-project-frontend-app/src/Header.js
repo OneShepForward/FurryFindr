@@ -1,12 +1,9 @@
-import React, { useReducer } from 'react';
-import { useEffect, useState } from 'react';
-
-// to incorporate styling
+import React from 'react';
+import { useState } from 'react';
 import "./Header.css"; 
 
-// function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
 function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
-                    activeUser, allUserData, handleAgencyClicked, handleLetsMatchClick } ) {
+                   allUserData, handleAgencyClicked, handleLetsMatchClick } ) {
     // openMenu will allow for cascade dropdown menu
     const [openMenu, setOpenMenu] = useState(false)
     const [openUserMenu, setOpenUserMenu] = useState(false)
@@ -68,13 +65,16 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
         <div className="nav-bar">
             {currentAgency ? 
             (
-            <h1 className="active-user">
-            Browsing FurryFindr in {currentAgency.city}
-            </h1> 
-            ) :
-            <h1 className="active-user">
-            Welcome to FurryFindr
-            </h1> 
+                <h1 className="active-user">
+                Browsing FurryFindr in {currentAgency.city}
+                </h1> 
+            ) 
+            :
+            (
+                <h1 className="active-user">
+                Welcome to FurryFindr
+                </h1> 
+            )
             }
             {/* This renders all of the user selections */}
             <div className='lets-match-button'>
@@ -110,7 +110,7 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
         </div>    
     );
     } else {
-        return (<p>Loading...</p>)
+        return (<h2>Loading...</h2>)
     }
 }
 

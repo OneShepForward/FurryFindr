@@ -8,14 +8,16 @@ import furryfindr_logo from './furryfindr_logo.png';
 import furryfindr_match from './furryfindr_match.png';
 
 function App() {
+  // to simulate authentication, change initial_user_id
   const initial_user_id = 1
+
   const [activeUserID, setActiveUserID] = useState(initial_user_id);
+  const [allUserData, setAllUserData] = useState([]);
+  const [activeUser, setUser] = useState();
   const [pets, setPets] = useState();
   const [allPets, setAllPets] = useState();
   const [allAgencyData, setAllAgencyData] = useState([]);
   const [currentAgency, setCurrentAgency] = useState();
-  const [allUserData, setAllUserData] = useState([]);
-  const [activeUser, setUser] = useState();
   const [isRendered, setRendered] = useState(false);
   const [isIntro, setIntro] = useState(true);
   const [isVisible, setVisible] = useState(false);
@@ -45,11 +47,12 @@ function App() {
     .then(agencyData => setAllAgencyData(agencyData))
     .then(setRendered(true))
 
+    // this makes the logo appear when loading
     setVisible(true);
 
     const timer = setTimeout(() => {
-      setIntro(false);
-  }, 2500);
+        setIntro(false);
+    }, 2500);
 
   //cleanup function 
   return function cleanup() {
@@ -62,7 +65,9 @@ function App() {
     // filter by agency or return to all cities
   const handleAgencyClicked = (agency) => {
     if (agency === "All") {
-      setPets(allPets)
+      fetch(`http://localhost:9292/pets/not/${initial_user_id}`)
+      .then((res) => res.json())
+      .then(petData => setPets(petData))
       setCurrentAgency()
     } else {
       console.log("App says agency: ", agency);
@@ -73,11 +78,9 @@ function App() {
       setPets(pets.filter(pet => pet.agency_id === agency.id))
     }
   }
-
+  
   const handleUserClicked = (user) => {
     console.log("Current user is now: ", user)  
-    // setUser(user)
-        // passing in the entire user instead of id
     fetch(`http://localhost:9292/pets/${user.id}`)
     .then (res => res.json())
     .then(retrievedPets => {
@@ -86,10 +89,8 @@ function App() {
     })
   }
 
-  const handleDeleteClicked = (the_user, pet) => {
+  const handleDeleteClicked = (the_user) => {
     handleUserClicked(the_user)
-    // console.log(pet)
-    // console.log(the_user)
   }
 
   const handleLetsMatchClick = () => {
@@ -98,7 +99,6 @@ function App() {
 
   const handleMatched = () => {
       setPopup(true);
-      console.log(matchPop)
       setTimeout(() => {
         setPopup(false);
     }, 1000);
@@ -145,14 +145,14 @@ return (
 
     <div className="App">
       <Header
-      isRendered = {isRendered}
-      allUserData = {allUserData}
-      activeUser = {activeUser}
-      allAgencyData = {allAgencyData}
-      currentAgency = {currentAgency}
-      handleUserClicked = {handleUserClicked}
-      handleAgencyClicked = {handleAgencyClicked}
-      handleLetsMatchClick = {handleLetsMatchClick}
+        isRendered = {isRendered}
+        allUserData = {allUserData}
+        activeUser = {activeUser}
+        allAgencyData = {allAgencyData}
+        currentAgency = {currentAgency}
+        handleUserClicked = {handleUserClicked}
+        handleAgencyClicked = {handleAgencyClicked}
+        handleLetsMatchClick = {handleLetsMatchClick}
       />
 
       {/* Displays either User Matches or Tinder Pile */}
@@ -165,49 +165,3 @@ return (
 }
 
 export default App;
-
-
-
-//   // I have these as the starting state for activeUser and allUserData
-//   const sample_user =     
-// {
-//   "id": 1,
-//   "name": "Balgruuf Black-Briar",
-//   "age": 23,
-//   "city": "Balmora",
-//   "bio": "I forgot something.",
-//   "interested_in": "Any furry friend!",
-//   "photo": "https://robohash.org/optioetomnis.png?size=300x300&set=set1"
-// }
-
-// const sample_user_array = [ 
-//   {
-//   "id": 1,
-//   "name": "Balgruuf Black-Briar",
-//   "age": 23,
-//   "city": "Balmora",
-//   "bio": "I forgot something.",
-//   "interested_in": "Any furry friend!",
-//   "photo": "https://robohash.org/optioetomnis.png?size=300x300&set=set1"
-// },
-// {
-//   "id": 2,
-//   "name": "Festus Newberry",
-//   "age": 35,
-//   "city": "Morthal",
-//   "bio": "Strike the tent.",
-//   "interested_in": "Dogs",
-//   "photo": "https://robohash.org/aliassapientemolestiae.png?size=300x300&set=set1"
-// },
-// {
-//   "id": 3,
-//   "name": "Gerdur The Old",
-//   "age": 52,
-//   "city": "Whiterun",
-//   "bio": "Goodnight, my darlings, I'll see you tomorrow.",
-//   "interested_in": "Any furry friend!",
-//   "photo": "https://robohash.org/asperioresadipiscidebitis.png?size=300x300&set=set1"
-// },]
-
-
-

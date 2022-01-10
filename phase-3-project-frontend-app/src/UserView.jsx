@@ -1,20 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import UserMatch from "./UserMatch";
 
 function UserView( { activeUser, pets, handleDelete } ) {
 
-// console.log(pets)
-
-   function renderMatches () { 
+   const renderMatches = () => { 
        return pets.map((pet) => {
         return <UserMatch
-            key = {pet.id}
-            pet = {pet}
-            activeUser = {activeUser}
-            className="listedPet"
-            handleDelete = {handleDelete}
-        >
-       </UserMatch>
+                    key = {pet.id}
+                    pet = {pet}
+                    activeUser = {activeUser}
+                    className="listedPet"
+                    handleDelete = {handleDelete}
+                />
    })
 }
    
