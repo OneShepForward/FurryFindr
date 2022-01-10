@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 function UserMatch( { pet, handleDelete, activeUser }) {
   
@@ -21,10 +21,9 @@ console.log(activeUser)
         <img 
         src={pet.photo} 
         className="user-match-image"
-        alt="cute picture of a pet"
+        alt={`cute picture of ${pet.name}`}
         />
       </span>
-          {/* <span style={{position: "relative", top: 0}}>{pet.name}</span> */}
           <div className="user-match-name">{pet.name}</div>
         <span className="age">Age: {pet.age}</span>
       <div className="details">

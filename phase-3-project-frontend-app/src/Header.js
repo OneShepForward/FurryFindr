@@ -1,12 +1,9 @@
-import React, { useReducer } from 'react';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import "./Header.css"; 
 
-// to incorporate styling
-import "./Menu.css"; 
-
-// function Header( { activeUser, handleUserClicked, allUserData, isRendered } ) {
 function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
-                    activeUser, allUserData, handleAgencyClicked } ) {
+                   allUserData, handleAgencyClicked, handleLetsMatchClick } ) {
     // openMenu will allow for cascade dropdown menu
     const [openMenu, setOpenMenu] = useState(false)
     const [openUserMenu, setOpenUserMenu] = useState(false)
@@ -38,6 +35,10 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
         setOpenUserMenu(!openUserMenu)
     }
 
+    const handleLetsMatch = () => {
+        handleLetsMatchClick()
+    }
+
     const renderAgencies = allAgencyData.map((agency) => {
         return <div
             key={agency.id} 
@@ -64,15 +65,25 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
         <div className="nav-bar">
             {currentAgency ? 
             (
-            <h1 className="active-user">
-            Browsing FurryFindr in {currentAgency.city}
-            </h1> 
-            ) :
-            <h1 className="active-user">
-            Welcome to FurryFindr!
-            </h1> 
+                <h1 className="active-user">
+                Browsing FurryFindr in {currentAgency.city}
+                </h1> 
+            ) 
+            :
+            (
+                <h1 className="active-user">
+                Welcome to FurryFindr
+                </h1> 
+            )
             }
             {/* This renders all of the user selections */}
+            <div className='lets-match-button'>
+                <div 
+                    className={"match-item match-logo"}
+                    onClick={() => handleLetsMatch()}>
+                        Let's Match!
+                </div>
+            </div>
             <div className="Menu">
                 <div className={"m-item m-logo"}
                     onClick={() => setOpenMenu(!openMenu)}>
@@ -92,14 +103,14 @@ function Header( { currentAgency, handleUserClicked, allAgencyData, isRendered,
             <div className="UserMenu">
                 <div className={"user-item user-logo"}
                     onClick={() => setOpenUserMenu(!openUserMenu)}>
-                    Users
+                    Show Matches by User
                 </div>
                 {renderUsers}
             </div>
         </div>    
     );
     } else {
-        return (<p>Loading...</p>)
+        return (<h2>Loading...</h2>)
     }
 }
 

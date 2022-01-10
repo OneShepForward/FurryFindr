@@ -1,13 +1,15 @@
 #root {
-  /* background-color: #f5c1f0; */
-  background-image: linear-gradient(#f1afeb, #f0e2ee)
+  background-image: linear-gradient(#f1afeb, #eee6ed);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
-.App {
+/* .App {
   text-align: center;
-  /* background-color: #f5c1f0; */
   background-image: linear-gradient(#f1afeb, #f0e2ee);
-}
+} */
+
 
 .App-logo {
   height: 40vmin;
@@ -44,9 +46,9 @@
   }
 }
 
-.active-user {
+/* .active-user {
   color: red
-}
+} */
 
 .user-match-card {
   margin-left: auto;
@@ -85,4 +87,38 @@
 .user-match-card .emoji-button {
   font-size: x-large;
   margin-top: 2px
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20vh);
+  visibility: hidden;
+  transition: opacity 1200ms ease-out, transform 600ms ease-out,
+    visibility 1200ms ease-out;
+  will-change: opacity, transform, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+.pop-up {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 500ms ease-out,
+    visibility 500ms ease-out;
+  will-change: opacity, visibility;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -168px;
+  margin-left: -311.5px;
+}
+
+.pop-up.is-popping {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
 }

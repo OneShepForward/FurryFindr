@@ -1,4 +1,4 @@
-.Menu{
+/* .Menu{
   position: relative;
   bottom: 10em;
   left: 20em;
@@ -10,6 +10,57 @@
   bottom: 10em;
   left: 30em;
   margin: 2em 3em;
+}
+
+.lets-match-button {
+  position: relative;
+  bottom: 10em;
+  left: 10.2em;
+  margin: 2em 3em;
+} */
+
+.UserMenu{
+  position: absolute;
+  top: 0em;
+  right: 20em;
+  margin: 2em 3em;
+}
+
+.Menu{
+  position: absolute;
+  top: 0em;
+  right: 30em;
+  margin: 2em 3em;
+}
+
+.lets-match-button {
+  position: absolute;
+  top: 0em;
+  right: 40em;
+  margin: 2em 3em;
+}
+
+.match-item{
+  position: absolute;
+  top: 0;
+
+  width: 6em;
+  background-color: #e953da;
+  box-shadow: 1px 2px 2px #e953da;
+
+  padding: 0.2em;
+
+  border-radius: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.5em;
+  color: #EDFFEC;
+  cursor: pointer;
+
+  transition: 1s;
 }
 
 .m-item{
@@ -39,7 +90,7 @@
   position: absolute;
   top: 0;
 
-  width: 12em;
+  width: 13em;
   background-color: #44cfa5;
   box-shadow: 1px 2px 2px #44cfa5;
 
@@ -56,6 +107,14 @@
   cursor: pointer;
 
   transition: 1s;
+}
+
+.match-item:hover{
+  border: 1px solid black;
+}
+
+.match-logo{
+  z-index: 1;
 }
 
 .m-item:hover{
@@ -123,6 +182,10 @@
 .user-open-5{
   top: 10em;
   background-color: #9b5de5;
+}
+
+.active-user {
+  margin-top: 20%;
 }
 
 /* .open-6{
